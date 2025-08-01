@@ -2,6 +2,7 @@ use tauri::{command, AppHandle, Runtime};
 
 #[cfg(target_os = "macos")]
 use {
+    block2::RcBlock,
     macos_accessibility_client::accessibility::{
         application_is_trusted, application_is_trusted_with_prompt,
     },
@@ -199,12 +200,14 @@ pub async fn request_microphone_permission() -> Result<(), String> {
     #[cfg(target_os = "macos")]
     unsafe {
         let av_media_type = NSString::from_str("soun");
-        type CompletionBlock = Option<extern "C" fn(Bool)>;
-        let completion_block: CompletionBlock = None;
+        let completion_block = RcBlock::new(|granted: Bool| {
+            log::info!("Microphone permission granted: {:?}", granted);
+        });
+
         let _: () = msg_send![
             class!(AVCaptureDevice),
             requestAccessForMediaType: &*av_media_type,
-            completionHandler: completion_block
+            completionHandler: &*completion_block
         ];
     }
 
@@ -253,12 +256,14 @@ pub async fn request_camera_permission() -> Result<(), String> {
     #[cfg(target_os = "macos")]
     unsafe {
         let av_media_type = NSString::from_str("vide");
-        type CompletionBlock = Option<extern "C" fn(Bool)>;
-        let completion_block: CompletionBlock = None;
+        let completion_block = RcBlock::new(|granted: Bool| {
+            log::info!("Camera permission granted: {:?}", granted);
+        });
+
         let _: () = msg_send![
             class!(AVCaptureDevice),
             requestAccessForMediaType: &*av_media_type,
-            completionHandler: completion_block
+            completionHandler:  &*completion_block
         ];
     }
 

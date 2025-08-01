@@ -23,3 +23,5 @@ tauri-plugin = { version = "2", features = ["build"] }
 macos-accessibility-client = "0.0.1"
 objc2 = "0.6"
 objc2-foundation = "0.3"
+block2 = "0.6"
+log = "0.4"

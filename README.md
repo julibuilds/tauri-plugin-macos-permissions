@@ -118,3 +118,5 @@ pnpm tauri dev
 - [BongoCat](https://github.com/ayangweb/BongoCat) - Open source cross-platform desktop pets.
 
 - [Coco AI](https://github.com/infinilabs/coco-app) - Search, Connect, Collaborate, Your Personal AI Search and Assistant, all in one space.
+
+- [Cardinal](https://github.com/cardisoft/cardinal) - Fastest and most accurate file searching tool for macOS.

@@ -21,3 +21,6 @@ tauri-plugin.workspace = true
 macos-accessibility-client.workspace = true
 objc2.workspace = true
 objc2-foundation.workspace = true
+
+[lints]
+workspace = true
